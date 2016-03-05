@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class TestRepeatAdditionQuiz{
+	public static void main(String[] args){
+	int num1 = (int)(Math.random() * 10);
+	int num2 = (int)(Math.random() * 10);
+
+	Scanner input = new Scanner(System.in);
+		
+	System.out.print("What is " + num1 + " * " + num2 + " ? ");
+	int answer = input.nextInt();
+
+	StoreAnswer storeanswer = new StoreAnswer();
+	
+	while(num1 * num2 != answer){
+		storeanswer.store(answer);
+		System.out.print("Wrong answer. Try again. What is "
+		 + num1 + " * " + num2 + " ? ");
+		 answer = input.nextInt();
+		storeanswer.determine(answer);
+	}
+		System.out.println("Ypu got it.");
+	}
+}
+
+class StoreAnswer{
+	
+	ArrayList<Integer> list = new ArrayList<Integer>();
+	
+	public void store(int answer){	
+		list.add(answer);
+	}
+	
+	public void determine(int answer){
+		if (list.contains(answer)){
+			System.out.println("You already enter " + answer);
+		}
+		else{
+			list.add(answer);
+		}
+	}
+}
